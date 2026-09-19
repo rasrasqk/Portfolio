@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mohammed Razi — Web Developer, Kerala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0D12;
+    --bg-raised:#12151D;
+    --bg-card:#151923;
+    --line: rgba(255,255,255,0.09);
+    --text:#E7E9EE;
+    --text-dim:#8A90A0;
+    --accent:#5EEAD4;
+    --accent-dim: rgba(94,234,212,0.14);
+    --amber:#F0B457;
+    --max-w:1120px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{ overflow-x:hidden; width:100%; }
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{ color:inherit; }
+  ::selection{ background:var(--accent); color:#0B0D12; }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; width:100%; }
+
+  h1,h2,h3{ margin:0; font-weight:700; letter-spacing:-0.02em; line-height:1.12; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,13,18,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:var(--max-w); margin:0 auto;
+  }
+  .nav-mark{ font-family:'JetBrains Mono', monospace; font-weight:600; font-size:1rem; }
+  .nav-mark .dot{ color:var(--accent); }
+  .nav-links{ display:flex; gap:26px; font-size:0.9rem; list-style:none; margin:0; padding:0; }
+  .nav-links a{ text-decoration:none; color:var(--text-dim); transition:color .2s ease; }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--accent); color:var(--accent);
+    padding:8px 16px; border-radius:8px; font-weight:600; font-size:0.85rem;
+    text-decoration:none; white-space:nowrap;
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ background:var(--accent); color:#0B0D12; }
+  @media (max-width:780px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:64px 0 56px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr;
+    gap:48px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:36px; } }
+
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent);
+    border:1px solid var(--line); background:var(--bg-raised);
+    padding:6px 12px; border-radius:999px; margin-bottom:22px;
+  }
+  .kicker .pulse{ width:7px; height:7px; border-radius:50%; background:var(--accent); }
+  @media (prefers-reduced-motion: no-preference){
+    .kicker .pulse{ animation: blink 1.8s ease-in-out infinite; }
+  }
+  @keyframes blink{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
+
+  .hero h1{ font-size:clamp(2.3rem, 6vw, 3.6rem); }
+  .hero h1 span{ color:var(--accent); }
+  .hero p.lede{
+    margin-top:20px; font-size:1.05rem; color:var(--text-dim);
+    max-width:50ch; line-height:1.65;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:8px; font-weight:600; font-size:0.92rem;
+    text-decoration:none; cursor:pointer; border:1px solid transparent;
+  }
+  .btn-solid{ background:var(--accent); color:#0B0D12; }
+  .btn-solid:hover{ background:#8FF2E1; }
+  .btn-outline{ border-color:var(--line); color:var(--text); background:var(--bg-raised); }
+  .btn-outline:hover{ border-color:var(--text-dim); }
+
+  /* terminal mock */
+  .terminal{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:12px; overflow:hidden; width:100%;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px; background:var(--bg-raised); border-bottom:1px solid var(--line);
+  }
+  .term-dot{ width:10px; height:10px; border-radius:50%; background:#3A3F4B; }
+  .term-title{ margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--text-dim); }
+  .term-body{
+    padding:22px 20px; font-family:'JetBrains Mono',monospace;
+    font-size:0.86rem; line-height:1.9; color:var(--text-dim);
+    overflow-x:auto;
+  }
+  .term-body .p{ color:var(--accent); }
+  .term-body .out{ color:var(--text); }
+  .term-body .cursor{
+    display:inline-block; width:7px; height:14px; background:var(--accent);
+    vertical-align:middle; margin-left:2px;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .term-body .cursor{ animation: blink 1s step-end infinite; }
+  }
+
+  /* ---------- SECTION ---------- */
+  section{ padding:70px 0; }
+  .sec-head{ margin-bottom:40px; max-width:600px; }
+  .sec-kicker{
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent);
+    margin-bottom:10px;
+  }
+  .sec-head h2{ font-size:clamp(1.7rem,3.6vw,2.3rem); }
+  .sec-head p{ margin-top:12px; color:var(--text-dim); font-size:1rem; line-height:1.6; }
+
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    font-size:1.08rem; line-height:1.75; color:var(--text-dim); max-width:70ch;
+  }
+  .about-body strong{ color:var(--text); font-weight:600; }
+  .about-body .accent{ color:var(--accent); font-weight:600; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:0.85rem;
+    padding:9px 16px; border-radius:8px; border:1px solid var(--line);
+    background:var(--bg-raised); color:var(--text-dim);
+  }
+
+  /* ---------- PROJECTS CAROUSEL ---------- */
+  .carousel-wrap{ position:relative; }
+  .carousel{
+    display:flex; gap:18px; overflow-x:auto; padding:4px 2px 28px;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; width:100%;
+  }
+  .carousel::-webkit-scrollbar{ display:none; }
+  .card{
+    flex:0 0 auto; width:min(320px, 78vw);
+    scroll-snap-align:start;
+    border:1px solid var(--line); border-radius:14px;
+    padding:24px 22px; background:var(--bg-card);
+    display:flex; flex-direction:column; min-height:260px;
+    transition:border-color .2s ease;
+  }
+  .card:hover{ border-color:rgba(94,234,212,0.4); }
+  .card .tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--accent);
+    background:var(--accent-dim); padding:5px 10px; border-radius:6px;
+    margin-bottom:16px; width:fit-content;
+  }
+  .card h3{ font-size:1.2rem; margin-bottom:8px; }
+  .card p{ font-size:0.92rem; line-height:1.55; color:var(--text-dim); flex-grow:1; margin:0; }
+  .card .gh-link{
+    margin-top:18px; display:inline-flex; align-items:center; gap:7px;
+    font-weight:600; text-decoration:none; font-size:0.87rem; color:var(--text);
+    width:fit-content;
+  }
+  .card .gh-link svg{ width:16px; height:16px; }
+  .card .gh-link:hover{ color:var(--accent); }
+
+  .carousel-nav{ display:flex; gap:10px; margin-top:4px; }
+  .car-btn{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--line);
+    background:var(--bg-raised); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--text);
+  }
+  .car-btn:hover{ border-color:var(--accent); color:var(--accent); }
+  .car-btn svg{ width:18px; height:18px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    text-align:center; background:var(--bg-raised);
+    border:1px solid var(--line); border-radius:20px; padding:64px 24px;
+  }
+  .contact h2{ font-size:clamp(1.8rem,4.4vw,2.6rem); max-width:18ch; margin:0 auto; }
+  .contact p{ margin:16px auto 30px; max-width:48ch; color:var(--text-dim); font-size:1rem; }
+
+  footer{
+    padding:36px 24px 56px; text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--text-dim);
+  }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed; right:18px; bottom:18px; z-index:60;
+    width:56px; height:56px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,0.5);
+    text-decoration:none;
+  }
+  .wa-float svg{ width:28px; height:28px; }
+  .wa-float:hover{ filter:brightness(1.08); }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-mark">razi<span class="dot">.</span>dev</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="https://wa.me/918848206282?text=Hi%20Razi%2C%20I%20checked%20out%20your%20portfolio%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Let's talk</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="pulse"></span>Kollam, Kerala — open for freelance work</div>
+      <h1>Web developer building <span>things that ship.</span></h1>
+      <p class="lede">I'm Mohammed Razi. I run <strong>Metora</strong>, a small freelance studio helping Kerala businesses get real, working websites — and systems that stay working after launch.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-solid">See my work</a>
+        <a href="https://wa.me/918848206282?text=Hi%20Razi%2C%20I%20checked%20out%20your%20portfolio%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="btn btn-outline">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">razi@metora — zsh</span>
+      </div>
+      <div class="term-body">
+        <div><span class="p">$</span> whoami</div>
+        <div class="out">Mohammed Razi — B.Tech CSE, freelance developer</div>
+        <div>&nbsp;</div>
+        <div><span class="p">$</span> stack</div>
+        <div class="out">html · css · js · django · react · tailwind</div>
+        <div>&nbsp;</div>
+        <div><span class="p">$</span> status</div>
+        <div class="out">open for freelance work<span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">// about</div>
+      <h2>A bit about me</h2>
+    </div>
+    <p class="about-body">
+      I started building websites during my <strong>BCA</strong> and never really stopped — five years in, I'm finishing a <strong>B.Tech in Computer Science</strong> at College of Engineering Chengannur, while running <span class="accent">Metora</span> on the side. Real client work has taken me from a live gold-rate system for a jewellery store to a full storefront for a local supermarket — projects where the backend has to hold up quietly while the front end does the talking.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">// stack</div>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skill-row">
+      <span class="chip">HTML &amp; CSS</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">Bootstrap</span>
+      <span class="chip">Tailwind CSS</span>
+      <span class="chip">React</span>
+      <span class="chip">Django</span>
+      <span class="chip">Python</span>
+      <span class="chip">REST APIs</span>
+      <span class="chip">WordPress</span>
+      <span class="chip">Shopify</span>
+      <span class="chip">Git / GitHub</span>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">// projects</div>
+      <h2>Selected work</h2>
+      <p>A mix of client work, challenge builds, and things I made to learn something new. Every card links straight to the code.</p>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel" id="carousel">
+
+        <article class="card">
+          <span class="tag">design challenge</span>
+          <h3>Card Craft</h3>
+          <p>A single product card pushed as far as HTML &amp; CSS can go — built for FOCES CEC's frontend design challenge, judged on visual detail alone.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/card-craft-kudam" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="tag">django · e-commerce</span>
+          <h3>GreatKart</h3>
+          <p>A full online storefront with product catalog, cart and checkout flow — the backbone I've reused when building real client stores.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/GreatKart-django" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="tag">typescript · ui/ux</span>
+          <h3>Travel UI/UX</h3>
+          <p>A travel-booking interface case study — search, browse and booking flows designed to feel effortless, built out in TypeScript.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/travel_ui_ux" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="tag">django · real-time</span>
+          <h3>DjangoChat</h3>
+          <p>A real-time chat app exploring live messaging and room-based conversations — my dive into WebSockets and async Django.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/djangochat" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="tag">django · community</span>
+          <h3>StudyBud</h3>
+          <p>A study-room platform where people create topics, host discussions and find others learning the same thing — built with Django.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/studybud" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="tag">javascript · api</span>
+          <h3>Weather App</h3>
+          <p>A clean weather lookup tool pulling live conditions from a public API — small project, tidy execution.</p>
+          <a class="gh-link" href="https://github.com/rasrasqk/weatherapp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.02c-3.16.69-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+      </div>
+      <div class="carousel-nav">
+        <button class="car-btn" id="prevBtn" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="car-btn" id="nextBtn" aria-label="Next project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Got a site or system you need built?</h2>
+      <p>I take on freelance web development and digital marketing projects through Metora — message me directly and let's talk details.</p>
+      <a class="btn btn-solid" href="https://wa.me/918848206282?text=Hi%20Razi%2C%20I%20checked%20out%20your%20portfolio%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+        Message on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  mohammed razi · kollam, kerala · built with html, css &amp; a lot of coffee
+</footer>
+
+<a class="wa-float" href="https://wa.me/918848206282?text=Hi%20Razi%2C%20I%20checked%20out%20your%20portfolio%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Message Razi on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.36.65 4.56 1.78 6.44L4 29l7.72-1.74a12.9 12.9 0 0 0 4.3.74c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.64 3 16.02 3Zm0 21.86c-1.55 0-3.02-.4-4.3-1.14l-.31-.18-4.58 1.03 1.06-4.46-.2-.32a9.83 9.83 0 0 1-1.55-5.27c0-5.45 4.43-9.88 9.88-9.88 5.45 0 9.88 4.43 9.88 9.88 0 5.45-4.43 9.88-9.88 9.88Zm5.4-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.19 5.07 4.47.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+</a>
+
+<script>
+  const carousel = document.getElementById('carousel');
+  const cardWidth = () => carousel.querySelector('.card').offsetWidth + 18;
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    carousel.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+  });
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    carousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+  });
+
+  let isDown = false, startX, scrollLeft;
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+  ['mouseleave','mouseup'].forEach(evt => carousel.addEventListener(evt, () => isDown = false));
+  carousel.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    carousel.scrollLeft = scrollLeft - (x - startX) * 1.2;
+  });
+</script>
+
+</body>
+</html>
